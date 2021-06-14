@@ -10,8 +10,8 @@ describe('<Event /> component', () => {
         EventWrapper = shallow(<Event />);
     });
 
-    test('event is rederer', () => {
-        expect(EventWrapper.find(EventList)).toHaveLength(1);
+    test('render event data/content', () => {
+        expect(EventWrapper.find(___)).toHaveLength(1);
     });
 
 });
