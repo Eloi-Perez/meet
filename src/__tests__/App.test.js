@@ -8,11 +8,11 @@ import CitySearch from '../CitySearch';
 describe('<App /> component', () => {
     let AppWrapper;
     beforeAll(() => {
-        AppWrapper = shallow(<App />);
+        AppWrapper = shallow(<App />); //render App
     });
 
     test('render list of events', () => {
-        expect(AppWrapper.find(EventList)).toHaveLength(1);
+        expect(AppWrapper.find(EventList)).toHaveLength(1); // to exist
     });
 
     test('render CitySearch', () => {
