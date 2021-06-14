@@ -20,7 +20,7 @@ const credentials = {
     token_uri: "https://oauth2.googleapis.com/token",
     auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
     redirect_uris: ["https://eloi-perez.github.io/meet/"],
-    javascript_origins: ["https://eloi-perez.github.io", "http://localhost:3000", "http://localhost:8080"],
+    javascript_origins: ["https://eloi-perez.github.io", "http://localhost:3000", "http://localhost:8080", "http://127.0.0.1:5500"],
 };
 const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
 const oAuth2Client = new google.auth.OAuth2(
@@ -106,7 +106,7 @@ module.exports.getCalendarEvents = async (event) => {
         client_secret,
         redirect_uris[0]
     );
-    const access_token = decodeURIComponent(`${event.pathParameters.accesss_token}`);
+    const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
     oAuth2Client.setCredentials({ access_token })
 
     return new Promise((resolve, reject) => {
