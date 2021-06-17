@@ -26,7 +26,7 @@ describe('<Event /> component', () => {
         expect(EventWrapper.find(".event-description")).toHaveLength(1);
         expect(EventWrapper.find(".event-description").text()).toEqual(mockData[0].description);
     });
-        test('if open on click hide description', () => {
+        test('if open, on click hide description', () => {
         EventWrapper.setState({ showDetails: true});
         EventWrapper.find(".event-container button").at(0).simulate("click");
         expect(EventWrapper.state("showDetails")).toEqual(false);
