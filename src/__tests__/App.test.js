@@ -63,4 +63,23 @@ describe('<App /> integration tests', () => {
         expect(AppWrapper.state('events')).toEqual(allEvents);
         AppWrapper.unmount();
     });
+
+    test('update number of events state in app', async () => {
+        const AppWrapper = mount(<App />);
+        AppWrapper.find('.numInput').simulate('change', {
+            target: { value: 5 }
+        });
+        expect(AppWrapper.find('.numInput').prop('value')).toBe(5);
+        expect(AppWrapper.state('numEvents')).toBe(5);
+        AppWrapper.unmount();
+    });
+    // test('show number of events selected', async () => {
+    //     const AppWrapper = mount(<App />);
+    //     await AppWrapper.find('.numInput').simulate('change', {
+    //         target: { value: 5 }
+    //     });
+    //     console.log(AppWrapper.find('.EventList'));
+    //     expect(AppWrapper.find(Event)).toHaveLength(5);
+    //     AppWrapper.unmount();
+    // });
 });
