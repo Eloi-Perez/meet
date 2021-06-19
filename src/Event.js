@@ -12,6 +12,7 @@ class Event extends Component {
         return (
             <div className="event-container">
                 <h3>{event.summary}</h3>
+                <p>{event.start.dateTime}</p>
                 <button onClick={() => this.setState({showDetails: !this.state.showDetails})}>Show Details</button>
                 {this.state.showDetails && (
                     <div className="event-description">{event.description}</div>

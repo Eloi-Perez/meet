@@ -16,6 +16,7 @@ class NumberOfEvents extends Component {
         // const { events } = this.props;
         return (
             <div className="numEvents">
+                <p>Number of events</p>
                 <input
                     type="text"
                     className="numInput"
