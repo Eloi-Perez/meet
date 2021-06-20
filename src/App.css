@@ -5,7 +5,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
 }
 
 .App * {
@@ -45,9 +44,6 @@ input[type="text"], input[type="number"] {
 }
 
 .CitySearch {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* flex-basis: 300px; */
   max-width: 300px;
   margin: auto;
   position: relative;
@@ -124,7 +120,8 @@ input[type="text"], input[type="number"] {
 }
 
 .numEvents {
-  width: 200px;
+  display: flex;
+  width: 400px;
   margin: 20px auto;
   text-align: center;
   flex-direction: row;
@@ -132,7 +129,7 @@ input[type="text"], input[type="number"] {
 }
 
 .numInput {
-  width: 40px;
+  width: 50px;
   margin: 0 10px;
 }
 

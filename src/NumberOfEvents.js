@@ -22,7 +22,7 @@ class NumberOfEvents extends Component {
             <div className="numEvents">
                 <p>Number of events  </p>
                 <input
-                    type="text"
+                    type="number"
                     className="numInput"
                     value={this.state.inputNumEvents}
                     // onKeyDown={onKeyDown}
