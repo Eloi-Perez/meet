@@ -13,16 +13,21 @@ class NumberOfEvents extends Component {
         this.props.updateNumEvents(value);
     };
 
+    handleClick = (e) => {
+        e.target.select();
+    };
+
     render() {
         return (
             <div className="numEvents">
-                <p>Number of events</p>
+                <p>Number of events  </p>
                 <input
                     type="text"
                     className="numInput"
                     value={this.state.inputNumEvents}
                     // onKeyDown={onKeyDown}
                     onChange={this.handleInputChanged}
+                    onClick={this.handleClick}
                 />
             </div>
         );
