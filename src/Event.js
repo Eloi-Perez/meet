@@ -17,8 +17,8 @@ class Event extends Component {
                 <p>{event.location}</p>
                 <button className="details-btn" onClick={() => this.setState({showDetails: !this.state.showDetails})}>Show Details</button>
                 {this.state.showDetails && (
-                    <div className="event-description">
-                    <p>{event.description}</p>
+                    <div className="event-details">
+                    <p className="event-description">{event.description}</p>
                     <p><a href={event.htmlLink}>Event in Google Calendar</a></p>
                     </div>
                 )}
