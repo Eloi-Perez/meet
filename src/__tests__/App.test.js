@@ -78,8 +78,13 @@ describe('<App /> integration tests', () => {
     //     await AppWrapper.find('.numInput').simulate('change', {
     //         target: { value: 5 }
     //     });
-    //     console.log(AppWrapper.find('.EventList'));
-    //     expect(AppWrapper.find(Event)).toHaveLength(5);
+    //     console.log(AppWrapper.find('.EventList').hostNodes().debug());
+
+        // const elem = AppWrapper.find('.EventList li');
+        // expect(elem.length).toBe(5);
+
+        // expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
+    //     expect(AppWrapper.find('.EventList').hostNodes()).toHaveLength(5);
     //     AppWrapper.unmount();
     // });
 });
