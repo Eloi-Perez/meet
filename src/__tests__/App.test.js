@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import App from '../App';
 import EventList from '../EventList';
+import Event from '../Event';
 import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
 import { mockData } from '../mock-data';
@@ -73,18 +74,15 @@ describe('<App /> integration tests', () => {
         expect(AppWrapper.state('numEvents')).toBe(5);
         AppWrapper.unmount();
     });
-    // test('show number of events selected', async () => {
-    //     const AppWrapper = mount(<App />);
-    //     await AppWrapper.find('.numInput').simulate('change', {
-    //         target: { value: 5 }
-    //     });
-    //     console.log(AppWrapper.find('.EventList').hostNodes().debug());
-
-        // const elem = AppWrapper.find('.EventList li');
-        // expect(elem.length).toBe(5);
-
-        // expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
-    //     expect(AppWrapper.find('.EventList').hostNodes()).toHaveLength(5);
-    //     AppWrapper.unmount();
-    // });
+    test('show number of events selected', async () => {
+        const AppWrapper = mount(<App />);
+        AppWrapper.update();
+        await AppWrapper.find('.numInput').simulate('change', {
+            target: { value: 5 }
+        });
+        AppWrapper.update();
+        // console.log(AppWrapper.find(Event).debug());
+        expect(AppWrapper.find(Event)).toHaveLength(5);
+        AppWrapper.unmount();
+    });
 });

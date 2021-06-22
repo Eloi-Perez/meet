@@ -11,21 +11,21 @@ describe('<CitySearch /> component', () => {
         CitySearchWrapper = shallow(<CitySearch locations={locations} updateEvents={() => { }} />);
     });
     test('render text input', () => {
-        expect(CitySearchWrapper.find('.city')).toHaveLength(1);
+        expect(CitySearchWrapper.find('.cityInput')).toHaveLength(1);
     });
     test('renders a list of suggestions', () => {
         expect(CitySearchWrapper.find('.suggestions')).toHaveLength(1);
     });
     test('renders text input correctly', () => {
         const query = CitySearchWrapper.state('query');
-        expect(CitySearchWrapper.find('.city').prop('value')).toBe(query);
+        expect(CitySearchWrapper.find('.cityInput').prop('value')).toBe(query);
     });
     test('change state when text input changes', () => {
         CitySearchWrapper.setState({
             query: 'Munich'
         });
         const eventObject = { target: { value: 'Berlin' } };
-        CitySearchWrapper.find('.city').simulate('change', eventObject);
+        CitySearchWrapper.find('.cityInput').simulate('change', eventObject);
         expect(CitySearchWrapper.state('query')).toBe('Berlin');
     });
     test('render list of suggestions correctly', () => {
@@ -39,7 +39,7 @@ describe('<CitySearch /> component', () => {
     });
     test('suggestion list match the query when changed', () => {
         CitySearchWrapper.setState({ query: '', suggestions: [] });
-        CitySearchWrapper.find(".city").simulate("change", {
+        CitySearchWrapper.find(".cityInput").simulate("change", {
             target: { value: "Berlin" },
         });
         const query = CitySearchWrapper.state("query");
@@ -57,7 +57,7 @@ describe('<CitySearch /> component', () => {
         expect(CitySearchWrapper.state("query")).toBe(suggestions[0]);
     });
     test("selecting CitySearch input reveals the suggestions list", () => {
-        CitySearchWrapper.find('.city').simulate('focus');
+        CitySearchWrapper.find('.cityInput').simulate('focus');
         expect(CitySearchWrapper.state('showSuggestions')).toBe(true);
         expect(CitySearchWrapper.find('.suggestions').prop('style')).not.toEqual({ display: 'none' });
     });
