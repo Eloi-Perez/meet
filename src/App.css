@@ -143,7 +143,7 @@ input[type="text"], input[type="number"] {
 
 .Alert {
   position: fixed;
-  top: 20px;
+  top: 10px;
 }
 
 .data-vis-wrapper {
