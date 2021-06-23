@@ -19,7 +19,7 @@ class Event extends Component {
                 {this.state.showDetails && (
                     <div className="event-details">
                         <p className="event-description">{event.description}</p>
-                        <p><a href={event.htmlLink}>Event in Google Calendar</a></p>
+                        <p><a href={event.htmlLink} rel="noreferrer" target="_blank">Event in Google Calendar</a></p>
                     </div>
                 )}
             </div>
