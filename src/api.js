@@ -4,7 +4,7 @@ import NProgress from 'nprogress';
 
 const awsUrl = 'https://n1ql91m6ff.execute-api.eu-west-2.amazonaws.com/dev/api';
 
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
     const result = await fetch(
         `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
     )
