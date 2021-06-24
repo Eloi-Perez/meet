@@ -67,7 +67,7 @@ class App extends Component {
                 <NumberOfEvents updateNumEvents={this.updateNumEvents} />
                 <EventList events={this.state.events} numEvents={this.state.numEvents} />
                 {!navigator.onLine && (<OfflineAlert text="You are offline, so we are using cached data" />)}
-                {/* <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} /> */}
+                <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
             </div>
         );
     }
