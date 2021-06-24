@@ -3,6 +3,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
+import { OfflineAlert } from './Alert';
 
 import './App.css';
 import './nprogress.css';
@@ -53,7 +54,7 @@ class App extends Component {
                 <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
                 <NumberOfEvents updateNumEvents={this.updateNumEvents} />
                 <EventList events={this.state.events} numEvents={this.state.numEvents} />
-                
+                {!navigator.onLine && (<OfflineAlert text="You are offline, so we are using cached data" />)}
             </div>
         );
     }

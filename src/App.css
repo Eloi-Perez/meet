@@ -146,6 +146,14 @@ input[type="text"], input[type="number"] {
   top: -5px;
 }
 
+.offline {
+  position: fixed;
+  left: -2px;
+  top: 2rem;
+  writing-mode: tb-rl;
+  transform: rotate(180deg);
+}
+
 .data-vis-wrapper {
   display: flex;
   align-items: center;
@@ -230,5 +238,11 @@ input[type="text"], input[type="number"] {
   }
   .EventList {
     width: 50vw;
+  }
+  .offline {
+    left: 1rem;
+    top: 1rem;
+    writing-mode: inherit;
+    transform: inherit;
   }
 }
