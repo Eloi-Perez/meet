@@ -121,7 +121,7 @@ input[type="text"], input[type="number"] {
 
 .numEvents {
   display: flex;
-  width: 400px;
+  max-width: 300px;
   margin: 20px auto;
   text-align: center;
   flex-direction: row;
