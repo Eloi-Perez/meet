@@ -14,19 +14,19 @@ export const checkToken = async (accessToken) => {
     return result;
 };
 
-const removeQuery = () => {
-    if (window.history.pushState && window.location.pathname) {
-        var newurl =
-            window.location.protocol +
-            "//" +
-            window.location.host +
-            window.location.pathname;
-        window.history.pushState("", "", newurl);
-    } else {
-        newurl = window.location.protocol + "//" + window.location.host;
-        window.history.pushState("", "", newurl);
-    }
-};
+// const removeQuery = () => {  ///////////////// commented for Testing
+//     if (window.history.pushState && window.location.pathname) {
+//         var newurl =
+//             window.location.protocol +
+//             "//" +
+//             window.location.host +
+//             window.location.pathname;
+//         window.history.pushState("", "", newurl);
+//     } else {
+//         newurl = window.location.protocol + "//" + window.location.host;
+//         window.history.pushState("", "", newurl);
+//     }
+// };
 
 const getToken = async (code) => {
     const encodeCode = encodeURIComponent(code);
@@ -64,7 +64,7 @@ export const getEvents = async () => {
     const token = await getAccessToken();
 
     if (token) {
-        removeQuery();
+        // removeQuery(); ///////////////// commented for Testing
         const url = awsUrl + '/get-events/' + token;
         const result = await axios.get(url);
         if (result.data) {
