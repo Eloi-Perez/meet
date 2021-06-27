@@ -14,7 +14,7 @@ export const checkToken = async (accessToken) => {
     return result;
 };
 
-const removeQuery = () => {  ///////////////// commented for Testing
+const removeQuery = () => {
     if (window.history.pushState && window.location.pathname) {
         var newurl =
             window.location.protocol +
@@ -64,7 +64,7 @@ export const getEvents = async () => {
     const token = await getAccessToken();
 
     if (token) {
-        removeQuery(); ///////////////// commented for Testing
+        removeQuery();
         const url = awsUrl + '/get-events/' + token;
         const result = await axios.get(url);
         if (result.data) {
