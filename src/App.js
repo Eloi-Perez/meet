@@ -21,14 +21,11 @@ class App extends Component {
         this.mounted = true;
         const accessToken = localStorage.getItem('access_token');
         const isTokenValid = ((await checkToken(accessToken)).error === 'invalid_token') ? false : true;
-        // console.log((await checkToken(accessToken)).error);
-        // console.log('TOKEN is ' + isTokenValid);
         const searchParams = new URLSearchParams(window.location.search);
         const code = searchParams.get("code");
-        console.log('code: ' + await code);
         // If code in url or access_token is valid dont show welcome screen else show welcome screen for authorization
         this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-        if ((code || isTokenValid) && this.mounted) {
+        if ((code || isTokenValid || !navigator.onLine) && this.mounted) { //no code because that is only use when returned from google login, token is not valid because no conetion to check
             getEvents().then((events) => {      //not being executed when offline
                 console.log('getting events!')
                 if (this.mounted) {
