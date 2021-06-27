@@ -26,8 +26,8 @@ class App extends Component {
         // If code in url or access_token is valid dont show welcome screen else show welcome screen for authorization
         this.setState({ showWelcomeScreen: !(code || isTokenValid) });
         if ((code || isTokenValid) && this.mounted) { //no code because that is only use when returned from google login, token is not valid because no conetion to check
-            getEvents().then((events) => {      //not being executed when offline
-                console.log('getting events!')
+            console.log('getting events!');
+            getEvents().then((events) => {      //not being executed when offline                
                 if (this.mounted) {
                     this.setState({
                         events,
@@ -36,8 +36,8 @@ class App extends Component {
                 }
             });
         } else if (!navigator.onLine && this.mounted) {
+            console.log('getting events! (second if)');
             getEvents().then((events) => {
-                console.log('getting events! (second if)')
                 if (this.mounted) {
                     this.setState({
                         events,
@@ -46,8 +46,8 @@ class App extends Component {
                 }
             });
         } else if (!navigator.onLine) {
+            console.log('getting events! (third if)');
             getEvents().then((events) => {
-                console.log('getting events! (third if)')
                 if (this.mounted) {
                     this.setState({
                         events,
