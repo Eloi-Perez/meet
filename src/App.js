@@ -25,8 +25,8 @@ class App extends Component {
         const code = searchParams.get("code");
         // If code in url or access_token is valid dont show welcome screen else show welcome screen for authorization
         this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+        console.log(code); console.log(isTokenValid);
         if ((code || isTokenValid) && this.mounted) {
-            console.log('getting events!');
             getEvents().then((events) => {
                 if (this.mounted) {
                     this.setState({
@@ -65,11 +65,11 @@ class App extends Component {
 
         return (
             <div className="App">
+                <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
                 <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
                 <NumberOfEvents updateNumEvents={this.updateNumEvents} />
                 <EventList events={this.state.events} numEvents={this.state.numEvents} />
                 {!navigator.onLine && (<OfflineAlert text="You are offline, so you are viewing cached data" />)}
-                <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
             </div>
         );
     }
