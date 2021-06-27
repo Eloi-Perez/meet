@@ -18,7 +18,7 @@ class App extends Component {
     }
 
     async componentDidMount() {
-        this.mounted = true; //// Why is necessary?????
+        this.mounted = true;
         const accessToken = localStorage.getItem('access_token');
         const isTokenValid = ((await checkToken(accessToken)).error === 'invalid_token') ? false : true;
         const searchParams = new URLSearchParams(window.location.search);
