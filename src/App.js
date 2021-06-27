@@ -25,7 +25,7 @@ class App extends Component {
         const code = searchParams.get("code");
         // If code in url or access_token is valid dont show welcome screen else show welcome screen for authorization
         this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-        console.log(code); console.log(isTokenValid);
+        console.log('code: ' + code); console.log('isTokenValid: ' + isTokenValid); console.log(await checkToken(accessToken));
         if ((code || isTokenValid) && this.mounted) {
             getEvents().then((events) => {
                 if (this.mounted) {
