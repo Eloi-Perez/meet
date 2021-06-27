@@ -18,6 +18,7 @@ class App extends Component {
     }
 
     async componentDidMount() {
+        console.log('1 ' + navigator.onLine);
         this.mounted = true; //// Why is necessary?????
         const accessToken = localStorage.getItem('access_token');
         const isTokenValid = ((await checkToken(accessToken)).error === 'invalid_token') ? false : true;
@@ -25,6 +26,7 @@ class App extends Component {
         const code = searchParams.get("code");
         // If code in url or access_token is valid dont show welcome screen else show welcome screen for authorization
         this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+        console.log('2 ' + navigator.onLine);
         if ((code || isTokenValid) && this.mounted) { //no code because that is only use when returned from google login, token is not valid because no conetion to check
             console.log('getting events!');
             getEvents().then((events) => {      //not being executed when offline                
