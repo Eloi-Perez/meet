@@ -18,16 +18,36 @@ class App extends Component {
     }
 
     async componentDidMount() {
-        this.mounted = true;
+        this.mounted = true; //// Why is necessary?????
         const accessToken = localStorage.getItem('access_token');
         const isTokenValid = ((await checkToken(accessToken)).error === 'invalid_token') ? false : true;
         const searchParams = new URLSearchParams(window.location.search);
         const code = searchParams.get("code");
         // If code in url or access_token is valid dont show welcome screen else show welcome screen for authorization
         this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-        if ((code || isTokenValid || !navigator.onLine) && this.mounted) { //no code because that is only use when returned from google login, token is not valid because no conetion to check
+        if ((code || isTokenValid) && this.mounted) { //no code because that is only use when returned from google login, token is not valid because no conetion to check
             getEvents().then((events) => {      //not being executed when offline
                 console.log('getting events!')
+                if (this.mounted) {
+                    this.setState({
+                        events,
+                        locations: extractLocations(events),
+                    });
+                }
+            });
+        } else if (!navigator.onLine && this.mounted) {
+            getEvents().then((events) => {
+                console.log('getting events! (second if)')
+                if (this.mounted) {
+                    this.setState({
+                        events,
+                        locations: extractLocations(events),
+                    });
+                }
+            });
+        } else if (!navigator.onLine) {
+            getEvents().then((events) => {
+                console.log('getting events! (third if)')
                 if (this.mounted) {
                     this.setState({
                         events,
