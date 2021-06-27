@@ -14,7 +14,6 @@ export const checkToken = async (accessToken) => {
     return result;
 };
 
-<<<<<<< HEAD
 const removeQuery = () => {
     if (window.history.pushState && window.location.pathname) {
         var newurl =
@@ -28,21 +27,6 @@ const removeQuery = () => {
         window.history.pushState("", "", newurl);
     }
 };
-=======
-// const removeQuery = () => {  ///////////////// commented for Testing
-//     if (window.history.pushState && window.location.pathname) {
-//         var newurl =
-//             window.location.protocol +
-//             "//" +
-//             window.location.host +
-//             window.location.pathname;
-//         window.history.pushState("", "", newurl);
-//     } else {
-//         newurl = window.location.protocol + "//" + window.location.host;
-//         window.history.pushState("", "", newurl);
-//     }
-// };
->>>>>>> parent of 061d143 (test disable render if app)
 
 const getToken = async (code) => {
     const encodeCode = encodeURIComponent(code);
@@ -66,17 +50,10 @@ export const extractLocations = (events) => {
 export const getEvents = async () => {
     NProgress.start();
 
-<<<<<<< HEAD
     // if (window.location.href.startsWith("http://localhost")) {
     //     NProgress.done();
     //     return mockData;
     // }
-=======
-    if (window.location.href.startsWith("http://localhost")) {
-        NProgress.done();
-        return mockData;
-    }
->>>>>>> parent of 061d143 (test disable render if app)
 
     if (!navigator.onLine) {
         const data = localStorage.getItem("lastEvents");
@@ -87,11 +64,7 @@ export const getEvents = async () => {
     const token = await getAccessToken();
 
     if (token) {
-<<<<<<< HEAD
         removeQuery();
-=======
-        // removeQuery(); ///////////////// commented for Testing
->>>>>>> parent of 061d143 (test disable render if app)
         const url = awsUrl + '/get-events/' + token;
         const result = await axios.get(url);
         if (result.data) {
