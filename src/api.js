@@ -14,19 +14,19 @@ export const checkToken = async (accessToken) => {
     return result;
 };
 
-// const removeQuery = () => {  ///////////////// commented for Testing
-//     if (window.history.pushState && window.location.pathname) {
-//         var newurl =
-//             window.location.protocol +
-//             "//" +
-//             window.location.host +
-//             window.location.pathname;
-//         window.history.pushState("", "", newurl);
-//     } else {
-//         newurl = window.location.protocol + "//" + window.location.host;
-//         window.history.pushState("", "", newurl);
-//     }
-// };
+const removeQuery = () => {  ///////////////// commented for Testing
+    if (window.history.pushState && window.location.pathname) {
+        var newurl =
+            window.location.protocol +
+            "//" +
+            window.location.host +
+            window.location.pathname;
+        window.history.pushState("", "", newurl);
+    } else {
+        newurl = window.location.protocol + "//" + window.location.host;
+        window.history.pushState("", "", newurl);
+    }
+};
 
 const getToken = async (code) => {
     const encodeCode = encodeURIComponent(code);
@@ -50,10 +50,10 @@ export const extractLocations = (events) => {
 export const getEvents = async () => {
     NProgress.start();
 
-    if (window.location.href.startsWith("http://localhost")) {
-        NProgress.done();
-        return mockData;
-    }
+    // if (window.location.href.startsWith("http://localhost")) {  ///////////////// commented for Testing
+    //     NProgress.done();
+    //     return mockData;
+    // }
 
     if (!navigator.onLine) {
         const data = localStorage.getItem("lastEvents");
@@ -64,7 +64,7 @@ export const getEvents = async () => {
     const token = await getAccessToken();
 
     if (token) {
-        // removeQuery(); ///////////////// commented for Testing
+        removeQuery(); ///////////////// commented for Testing
         const url = awsUrl + '/get-events/' + token;
         const result = await axios.get(url);
         if (result.data) {

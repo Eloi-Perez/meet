@@ -23,6 +23,7 @@ class App extends Component {
         const isTokenValid = (await checkToken(accessToken)).error ? false : true;
         const searchParams = new URLSearchParams(window.location.search);
         const code = searchParams.get("code");
+        // If code in url or access_token is valid dont show welcome screen else show welcome screen for authorization
         this.setState({ showWelcomeScreen: !(code || isTokenValid) });
         if ((code || isTokenValid) && this.mounted) {
             getEvents().then((events) => {
@@ -59,7 +60,7 @@ class App extends Component {
 
     render() {
 
-        if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+        // if (this.state.showWelcomeScreen === undefined) return <div className="App" />
 
         return (
             <div className="App">
