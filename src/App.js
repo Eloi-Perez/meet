@@ -25,8 +25,8 @@ class App extends Component {
         const code = searchParams.get("code");
         // If code in url or access_token is valid dont show welcome screen else show welcome screen for authorization
         this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-        console.log('code: ' + code); console.log('isTokenValid: ' + isTokenValid); console.log(await checkToken(accessToken));
-        if ((code || isTokenValid) && this.mounted) {
+        // console.log('code: ' + code); console.log('isTokenValid: ' + isTokenValid); console.log(await checkToken(accessToken));
+        // if ((code || isTokenValid) && this.mounted) {
             getEvents().then((events) => {
                 if (this.mounted) {
                     this.setState({
@@ -35,12 +35,22 @@ class App extends Component {
                     });
                 }
             });
-        }
+        // }
     }
 
     componentWillUnmount() {
         this.mounted = false;
     }
+
+    getData = () => {
+        const { locations, events } = this.state;
+        const data = locations.map((location) => {
+            const number = events.filter((event) => event.location === location).length
+            const city = location.split(', ').shift()
+            return { city, number };
+        })
+        return data;
+    };
 
     updateNumEvents = (val) => {
         this.setState({
@@ -68,7 +78,7 @@ class App extends Component {
                 <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
                 <NumberOfEvents updateNumEvents={this.updateNumEvents} />
                 <EventList events={this.state.events} numEvents={this.state.numEvents} />
-                <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+                {/* <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} /> */}
                 {!navigator.onLine && (<OfflineAlert text="You are offline, so you are viewing cached data" />)}
             </div>
         );
