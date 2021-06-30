@@ -62,12 +62,12 @@ class App extends Component {
     render() {
 
         if (this.state.showWelcomeScreen === undefined) return <div className="App" />
-
+        let eventsSliced = this.state.events.slice(0, this.state.numEvents);
         return (
             <div className="App">
                 <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
                 <NumberOfEvents updateNumEvents={this.updateNumEvents} />
-                <EventList events={this.state.events} numEvents={this.state.numEvents} />
+                <EventList eventsSliced={eventsSliced} />
                 <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
                 {!navigator.onLine && (<OfflineAlert text="You are offline, so you are viewing cached data" />)}
             </div>
