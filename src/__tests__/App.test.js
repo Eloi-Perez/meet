@@ -13,6 +13,7 @@ describe('<App /> component, unit tests', () => {
     let AppWrapper;
     beforeAll(() => {
         AppWrapper = shallow(<App />); //render App
+        AppWrapper.setState({ showWelcomeScreen: false });
     });
 
     test('render list of events', () => {
@@ -30,6 +31,7 @@ describe('<App /> component, unit tests', () => {
 describe('<App /> integration tests', () => {
     test('App passes "events" state as a prop to EventList', () => {
         const AppWrapper = mount(<App />);
+        AppWrapper.setState({ showWelcomeScreen: false });
         const AppEventsState = AppWrapper.state('events');
         expect(AppEventsState).not.toEqual(undefined);
         expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState);
