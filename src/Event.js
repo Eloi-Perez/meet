@@ -15,7 +15,9 @@ class Event extends Component {
                 <h3>{event.summary}</h3>
                 <p>{date.toString()}</p>
                 <p>{event.location}</p>
-                <button className="details-btn" onClick={() => this.setState({ showDetails: !this.state.showDetails })}>Show Details</button>
+                <button className="details-btn" onClick={() => this.setState({ showDetails: !this.state.showDetails })}>
+                {this.state.showDetails ? 'Hide Details' : 'Show Details'}
+                </button>
                 {this.state.showDetails && (
                     <div className="event-details">
                         <p className="event-description">{event.description}</p>
