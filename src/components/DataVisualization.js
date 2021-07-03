@@ -14,8 +14,6 @@ class DataVisualization extends PureComponent  {
     };
 
     render() {
-        // const { eventsSliced } = this.props;
-
         return (
             <ResponsiveContainer height={400} >
                 <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
