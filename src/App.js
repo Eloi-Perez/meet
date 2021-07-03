@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
-import DataVisualization from './components/DataVisualization';
+import LocationVisualization from './components/LocationVisualization';
+import GenreVisualization from './components/GenreVisualization';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { OfflineAlert } from './components/Alert';
-// import WelcomeScreen from './WelcomeScreen';
+import WelcomeScreen from './WelcomeScreen';
 
 import './App.css';
 import './nprogress.css';
@@ -26,8 +27,7 @@ class App extends Component {
         const code = searchParams.get("code");
         // If code in url or access_token is valid dont show welcome screen else show welcome screen for authorization
         this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-        // console.log('code: ' + code); console.log('isTokenValid: ' + isTokenValid); console.log(await checkToken(accessToken));
-        // if ((code || isTokenValid) && this.mounted) {
+        if ((code || isTokenValid) && this.mounted) {
             getEvents().then((events) => {
                 if (this.mounted) {
                     this.setState({
@@ -36,7 +36,7 @@ class App extends Component {
                     });
                 }
             });
-        // }
+        }
     }
 
     componentWillUnmount() {
@@ -62,15 +62,18 @@ class App extends Component {
 
     render() {
 
-        // if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+        if (this.state.showWelcomeScreen === undefined) return <div className="App" />
         let eventsSliced = this.state.events.slice(0, this.state.numEvents);
         return (
             <div className="App">
                 <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-                <DataVisualization eventsSliced={eventsSliced} locations={this.state.locations} />
+                <div className="data-vis-wrapper">
+                    <GenreVisualization eventsSliced={eventsSliced} />
+                    <LocationVisualization eventsSliced={eventsSliced} locations={this.state.locations} />
+                </div>
                 <NumberOfEvents updateNumEvents={this.updateNumEvents} />
                 <EventList eventsSliced={eventsSliced} />
-                {/* <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} /> */}
+                <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
                 {!navigator.onLine && (<OfflineAlert text="You are offline, so you are viewing cached data" />)}
             </div>
         );

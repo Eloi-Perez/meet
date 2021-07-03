@@ -1,7 +1,7 @@
 import React, { PureComponent  } from 'react';
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip,  ResponsiveContainer } from 'recharts';
 
-class DataVisualization extends PureComponent  {
+class LocationVisualization extends PureComponent  {
 
     getData = () => {
         const { eventsSliced, locations } = this.props;
@@ -33,4 +33,4 @@ class DataVisualization extends PureComponent  {
     }
 }
 
-export default DataVisualization;
+export default LocationVisualization;
