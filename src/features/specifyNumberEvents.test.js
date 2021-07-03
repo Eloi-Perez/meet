@@ -3,9 +3,9 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
 import { mount } from 'enzyme';
 import App from '../App';
-import EventList from '../EventList';
+import EventList from '../components/EventList';
 
-import Event from '../Event';
+import Event from '../components/Event';
 
 import { mockData } from '../mock-data';
 

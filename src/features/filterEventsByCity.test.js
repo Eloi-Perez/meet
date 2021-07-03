@@ -3,7 +3,7 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import App from '../App';
-import CitySearch from '../CitySearch';
+import CitySearch from '../components/CitySearch';
 import { mockData } from '../mock-data';
 import { extractLocations } from '../api';
 
