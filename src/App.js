@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import EventList from './EventList';
-import CitySearch from './CitySearch';
-import NumberOfEvents from './NumberOfEvents';
+import EventList from './components/EventList';
+import CitySearch from './components/CitySearch';
+import NumberOfEvents from './components/NumberOfEvents';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
-import { OfflineAlert } from './Alert';
+import { OfflineAlert } from './components/Alert';
 import WelcomeScreen from './WelcomeScreen';
 
 import './App.css';
@@ -72,13 +72,13 @@ class App extends Component {
     render() {
 
         if (this.state.showWelcomeScreen === undefined) return <div className="App" />
-
+        let eventsSliced = this.state.events.slice(0, this.state.numEvents);
         return (
             <div className="App">
                 <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
                 <NumberOfEvents updateNumEvents={this.updateNumEvents} />
-                <EventList events={this.state.events} numEvents={this.state.numEvents} />
-                {/* <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} /> */}
+                <EventList eventsSliced={eventsSliced} />
+                <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
                 {!navigator.onLine && (<OfflineAlert text="You are offline, so you are viewing cached data" />)}
             </div>
         );

@@ -4,9 +4,7 @@ import Event from './Event';
 class EventList extends Component {
     
     render() {
-        const { events } = this.props;
-        const { numEvents } = this.props;
-        let eventsSliced = events.slice(0, numEvents);
+        const { eventsSliced } = this.props;
         return (
             <ul className="EventList">
                 {eventsSliced.map(event =>
