@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import App from '../App';
-import EventList from '../EventList';
-import Event from '../Event';
-import CitySearch from '../CitySearch';
-import NumberOfEvents from '../NumberOfEvents';
+import EventList from '../components/EventList';
+import Event from '../components/Event';
+import CitySearch from '../components/CitySearch';
+import NumberOfEvents from '../components/NumberOfEvents';
 import { mockData } from '../mock-data';
 import { extractLocations, getEvents } from '../api';
 
