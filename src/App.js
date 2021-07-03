@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import EventList from './EventList';
-import CitySearch from './CitySearch';
-import NumberOfEvents from './NumberOfEvents';
+import EventList from './components/EventList';
+import CitySearch from './components/CitySearch';
+import NumberOfEvents from './components/NumberOfEvents';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
-import { OfflineAlert } from './Alert';
+import { OfflineAlert } from './components/Alert';
 import WelcomeScreen from './WelcomeScreen';
 
 import './App.css';
