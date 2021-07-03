@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
+import DataVisualization from './components/DataVisualization';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import { OfflineAlert } from './components/Alert';
-import WelcomeScreen from './WelcomeScreen';
+// import WelcomeScreen from './WelcomeScreen';
 
 import './App.css';
 import './nprogress.css';
@@ -42,16 +43,6 @@ class App extends Component {
         this.mounted = false;
     }
 
-    getData = () => {
-        const { locations, events } = this.state;
-        const data = locations.map((location) => {
-            const number = events.filter((event) => event.location === location).length
-            const city = location.split(', ').shift()
-            return { city, number };
-        })
-        return data;
-    };
-
     updateNumEvents = (val) => {
         this.setState({
             numEvents: val,
@@ -71,14 +62,15 @@ class App extends Component {
 
     render() {
 
-        if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+        // if (this.state.showWelcomeScreen === undefined) return <div className="App" />
         let eventsSliced = this.state.events.slice(0, this.state.numEvents);
         return (
             <div className="App">
                 <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+                <DataVisualization eventsSliced={eventsSliced} locations={this.state.locations} />
                 <NumberOfEvents updateNumEvents={this.updateNumEvents} />
                 <EventList eventsSliced={eventsSliced} />
-                <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} />
+                {/* <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => { getAccessToken() }} /> */}
                 {!navigator.onLine && (<OfflineAlert text="You are offline, so you are viewing cached data" />)}
             </div>
         );
