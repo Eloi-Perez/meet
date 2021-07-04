@@ -24,7 +24,7 @@ const GenreVisualization = ({ eventsSliced }) => {
     }, [eventsSliced]);
 
     return (
-        <ResponsiveContainer height={400}>
+        <ResponsiveContainer className="ResponsivePie" height={400}>
             <PieChart width={400} height={400}>
                 <Pie
                     data={data}
