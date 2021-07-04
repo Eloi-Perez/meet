@@ -25,27 +25,25 @@ class App extends Component {
         const isTokenValid = ((await checkToken(accessToken)).error === 'invalid_token') ? false : true;
         const searchParams = new URLSearchParams(window.location.search);
         const code = searchParams.get("code");
-        // If code in url or access_token is valid dont show welcome screen else show welcome screen for authorization
-        this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+        // for local testing
+        if (window.location.href.startsWith("http://localhost") || window.location.href.startsWith("http://127.0.0.1")) {
+            this.setState({ showWelcomeScreen: false });
+            getEvents().then((events) => {
+                if (this.mounted) {
+                    this.setState({
+                        events,
+                        locations: extractLocations(events)
+                    });
+                }
+            });
+            // If code in url or access_token is valid dont show welcome screen else show welcome screen for authorization
+        } else { this.setState({ showWelcomeScreen: !(code || isTokenValid) }); }
         if ((code || isTokenValid) && this.mounted) {
             getEvents().then((events) => {
                 if (this.mounted) {
                     this.setState({
                         events,
-                        locations: extractLocations(events),
-                    });
-                }
-            });
-        }
-        // for local testing
-        if (window.location.href.startsWith("http://localhost") || window.location.href.startsWith("http://127.0.0.1")) {
-            getEvents().then((events) => {
-                if (this.mounted) {
-                    this.setState({
-                        showWelcomeScreen: false,
-                        events,
-                        locations: extractLocations(events),
-
+                        locations: extractLocations(events)
                     });
                 }
             });
