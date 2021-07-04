@@ -37,6 +37,19 @@ class App extends Component {
                 }
             });
         }
+        // for local testing
+        if (window.location.href.startsWith("http://localhost") || window.location.href.startsWith("http://127.0.0.1")) {
+            getEvents().then((events) => {
+                if (this.mounted) {
+                    this.setState({
+                        showWelcomeScreen: false,
+                        events,
+                        locations: extractLocations(events),
+
+                    });
+                }
+            });
+        }
     }
 
     componentWillUnmount() {

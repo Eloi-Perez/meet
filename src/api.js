@@ -50,7 +50,7 @@ export const extractLocations = (events) => {
 export const getEvents = async () => {
     NProgress.start();
 
-    if (window.location.href.startsWith("http://localhost")) {
+    if (window.location.href.startsWith("http://localhost") || window.location.href.startsWith("http://127.0.0.1")) {
         NProgress.done();
         return mockData;
     }
