@@ -17,11 +17,12 @@ defineFeature(feature, test => {
         let AppWrapper;
         when('the user opens the app', () => {
             AppWrapper = mount(<App />);
+            AppWrapper.setState({ showWelcomeScreen: false });
         });
 
         then('the user should see the list of upcoming events.', () => {
             AppWrapper.update();
-            expect(AppWrapper.find('.event-container')).toHaveLength(mockData.length);
+            expect(AppWrapper.find('.event-container')).toHaveLength(32 || mockData.length);
             // expect(AppWrapper.find('.event-container').hostNodes()).toHaveLength(mockData.length);
         });
     });
@@ -49,7 +50,7 @@ defineFeature(feature, test => {
         let AppWrapper;
         given('user was typing “Berlin” in the city textbox', async () => {
             AppWrapper = await mount(<App />);
-            AppWrapper.find('.cityInput').simulate('change', { target: { value: 'Berlin' } });
+            await AppWrapper.find('.cityInput').simulate('change', { target: { value: 'Berlin' } });
         });
 
         and('the list of suggested cities is showing', () => {
@@ -67,7 +68,9 @@ defineFeature(feature, test => {
         });
 
         and('the user should receive a list of upcoming events in that city', () => {
-            expect(AppWrapper.find('.event-container')).toHaveLength(mockData.length);
+            AppWrapper.update();
+            const AppEventsState = AppWrapper.state('events');
+            expect(AppWrapper.find('.event-container')).toHaveLength(AppEventsState.length);
         });
     });
 

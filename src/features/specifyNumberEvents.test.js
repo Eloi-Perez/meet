@@ -9,6 +9,8 @@ import Event from '../components/Event';
 
 import { mockData } from '../mock-data';
 
+// import { getEvents, extractLocations } from '../api';
+
 const feature = loadFeature('./src/features/specifyNumberEvents.feature');
 
 defineFeature(feature, test => {
@@ -17,7 +19,7 @@ defineFeature(feature, test => {
 
         let EventListWrapper;
         when('the user opens the app', () => {
-            EventListWrapper = mount(<EventList events={mockData} />);
+            EventListWrapper = mount(<EventList eventsSliced={mockData} />);
         });
 
         then('it should show the first 32 of them', () => {

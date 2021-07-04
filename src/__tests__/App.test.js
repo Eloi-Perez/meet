@@ -13,7 +13,7 @@ describe('<App /> component, unit tests', () => {
     let AppWrapper;
     beforeAll(() => {
         AppWrapper = shallow(<App />); //render App
-        AppWrapper.setState({ showWelcomeScreen: false });
+        AppWrapper.setState({ showWelcomeScreen: false });///////////////////////////////////////////key
     });
 
     test('render list of events', () => {
@@ -34,7 +34,7 @@ describe('<App /> integration tests', () => {
         AppWrapper.setState({ showWelcomeScreen: false });
         const AppEventsState = AppWrapper.state('events');
         expect(AppEventsState).not.toEqual(undefined);
-        expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState);
+        expect(AppWrapper.find(EventList).props().eventsSliced).toEqual(AppEventsState);
         AppWrapper.unmount();
     });
     test('App passes "locations" state as a prop to CitySearch', () => {
@@ -46,6 +46,7 @@ describe('<App /> integration tests', () => {
     });
     test('get list of events matching the city selected by the user', async () => {
         const AppWrapper = mount(<App />);
+        AppWrapper.setState({ showWelcomeScreen: false });
         const CitySearchWrapper = AppWrapper.find(CitySearch);
         const locations = extractLocations(mockData);
         CitySearchWrapper.setState({ suggestions: locations });

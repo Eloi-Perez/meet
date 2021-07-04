@@ -15,6 +15,7 @@ defineFeature(feature, test => {
         let AppWrapper;
         when('the user opens the app', () => {
             AppWrapper = mount(<App />);
+            AppWrapper.setState({ showWelcomeScreen: false });
         });
 
         then('all the events should be collapsed', () => {
