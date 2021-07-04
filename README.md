@@ -1,4 +1,5 @@
-# Meet App - https://eloi-perez.github.io/meet/
+# Meet App - [eloi-perez.github.io/meet/](https://eloi-perez.github.io/meet/)
+
 
 ## Objective
 To build a serverless (with AWS Lambda), progressive web application (PWA) with React, using test-driven development (TDD) and Google Calendar API as the source of the app data.
