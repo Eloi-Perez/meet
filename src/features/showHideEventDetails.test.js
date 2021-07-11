@@ -13,9 +13,9 @@ defineFeature(feature, test => {
         given('the main page is open', () => { });
 
         let AppWrapper;
-        when('the user opens the app', () => {
-            AppWrapper = mount(<App />);
-            AppWrapper.setState({ showWelcomeScreen: false });
+        when('the user opens the app', async () => {
+            AppWrapper = await mount(<App />);
+            await AppWrapper.instance().componentDidMount();
         });
 
         then('all the events should be collapsed', () => {
@@ -26,8 +26,9 @@ defineFeature(feature, test => {
 
     test('User can expand an event to show its details', ({ given, when, then }) => {
         let AppWrapper;
-        given('a collapsed element', () => {
-            AppWrapper = mount(<App />);
+        given('a collapsed element', async () => {
+            AppWrapper = await mount(<App />);
+            await AppWrapper.instance().componentDidMount();
         });
 
         when('the user click on the collapsed element', () => {
@@ -44,7 +45,7 @@ defineFeature(feature, test => {
         let EventWrapper;
         given('a expanded element', () => {
             EventWrapper = shallow(<Event event={mockData[0]} />);
-            EventWrapper.setState({ showDetails: true});
+            EventWrapper.setState({ showDetails: true });
         });
 
         when('the user click on the expanded element', () => {

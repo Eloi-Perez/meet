@@ -15,9 +15,10 @@ defineFeature(feature, test => {
         given('user hasn’t searched for any city', () => { });
 
         let AppWrapper;
-        when('the user opens the app', () => {
-            AppWrapper = mount(<App />);
-            AppWrapper.setState({ showWelcomeScreen: false });
+        when('the user opens the app', async () => {
+            AppWrapper = await mount(<App />);
+            await AppWrapper.instance().componentDidMount();
+            // AppWrapper.setState({ showWelcomeScreen: false });
         });
 
         then('the user should see the list of upcoming events.', () => {
@@ -50,6 +51,8 @@ defineFeature(feature, test => {
         let AppWrapper;
         given('user was typing “Berlin” in the city textbox', async () => {
             AppWrapper = await mount(<App />);
+            await AppWrapper.instance().componentDidMount();
+            AppWrapper.update();
             await AppWrapper.find('.cityInput').simulate('change', { target: { value: 'Berlin' } });
         });
 

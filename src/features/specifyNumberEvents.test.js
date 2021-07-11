@@ -30,8 +30,9 @@ defineFeature(feature, test => {
 
     test('User can change the number of events they want to see', ({ given, when, then }) => {
         let AppWrapper;
-        given('the main page is open', () => {
-            AppWrapper = mount(<App />);
+        given('the main page is open', async () => {
+            AppWrapper = await mount(<App />);
+            await AppWrapper.instance().componentDidMount();
         });
 
         when('the user click on button and edit it to another number', () => {

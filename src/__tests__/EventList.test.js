@@ -6,8 +6,8 @@ import { mockData } from '../mock-data';
 
 describe('<EventList /> component', () => {
     let EventListWrapper;
-    beforeAll(() => {
-        EventListWrapper = shallow(<EventList events={mockData} />);
+    beforeAll(async () => {
+        EventListWrapper = shallow(<EventList eventsSliced={mockData} />);
     });
 
     test('render correct number of events', () => {

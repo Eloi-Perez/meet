@@ -11,9 +11,10 @@ import { extractLocations, getEvents } from '../api';
 
 describe('<App /> component, unit tests', () => {
     let AppWrapper;
-    beforeAll(() => {
+    beforeAll(async () => {
         AppWrapper = shallow(<App />); //render App
-        AppWrapper.setState({ showWelcomeScreen: false });///////////////////////////////////////////key
+        await AppWrapper.instance().componentDidMount()
+        // AppWrapper.setState({ showWelcomeScreen: false });
     });
 
     test('render list of events', () => {
@@ -29,24 +30,25 @@ describe('<App /> component, unit tests', () => {
 });
 
 describe('<App /> integration tests', () => {
-    test('App passes "events" state as a prop to EventList', () => {
-        const AppWrapper = mount(<App />);
-        AppWrapper.setState({ showWelcomeScreen: false });
+    let AppWrapper;
+    beforeEach(async () => {
+        AppWrapper = await mount(<App />);
+        await AppWrapper.instance().componentDidMount();
+        AppWrapper.update();
+    });
+
+    test('App passes "events" state as a prop to EventList', async () => {
         const AppEventsState = AppWrapper.state('events');
         expect(AppEventsState).not.toEqual(undefined);
-        expect(AppWrapper.find(EventList).props().eventsSliced).toEqual(AppEventsState);
-        AppWrapper.unmount();
+        let sliced = AppEventsState.slice(0, 32); //32 is the default
+        expect(AppWrapper.find(EventList).props().eventsSliced).toEqual(sliced);
     });
     test('App passes "locations" state as a prop to CitySearch', () => {
-        const AppWrapper = mount(<App />);
         const AppLocationsState = AppWrapper.state('locations');
         expect(AppLocationsState).not.toEqual(undefined);
         expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
-        AppWrapper.unmount();
     });
     test('get list of events matching the city selected by the user', async () => {
-        const AppWrapper = mount(<App />);
-        AppWrapper.setState({ showWelcomeScreen: false });
         const CitySearchWrapper = AppWrapper.find(CitySearch);
         const locations = extractLocations(mockData);
         CitySearchWrapper.setState({ suggestions: locations });
@@ -57,35 +59,31 @@ describe('<App /> integration tests', () => {
         const allEvents = await getEvents();
         const eventsToShow = allEvents.filter(event => event.location === selectedCity);
         expect(AppWrapper.state('events')).toEqual(eventsToShow);
-        AppWrapper.unmount();
     });
     test('get list of all events when user selects "See all cities"', async () => {
-        const AppWrapper = mount(<App />);
         const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
         await suggestionItems.at(suggestionItems.length - 1).simulate('click');
         const allEvents = await getEvents();
         expect(AppWrapper.state('events')).toEqual(allEvents);
-        AppWrapper.unmount();
     });
 
     test('update number of events state in app', async () => {
-        const AppWrapper = mount(<App />);
         AppWrapper.find('.numInput').simulate('change', {
             target: { value: 5 }
         });
         expect(AppWrapper.find('.numInput').prop('value')).toBe(5);
         expect(AppWrapper.state('numEvents')).toBe(5);
-        AppWrapper.unmount();
     });
     test('show number of events selected', async () => {
-        const AppWrapper = mount(<App />);
-        AppWrapper.update();
         await AppWrapper.find('.numInput').simulate('change', {
             target: { value: 5 }
         });
         AppWrapper.update();
         // console.log(AppWrapper.find(Event).debug());
         expect(AppWrapper.find(Event)).toHaveLength(5);
+    });
+
+    afterEach(() => { //or afterAll
         AppWrapper.unmount();
     });
 });

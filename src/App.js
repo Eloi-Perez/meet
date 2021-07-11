@@ -27,7 +27,7 @@ class App extends Component {
         const code = searchParams.get("code");
         // for local testing
         if (window.location.href.startsWith("http://localhost") || window.location.href.startsWith("http://127.0.0.1")) {
-            this.setState({ showWelcomeScreen: false });
+            if (this.mounted) { this.setState({ showWelcomeScreen: false }); }
             getEvents().then((events) => {
                 if (this.mounted) {
                     this.setState({
