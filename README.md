@@ -9,6 +9,7 @@ Hosted on [GitHub Pages](https://eloi-perez.github.io/meet "GitHub Pages")
 ## Technologies used:
 * React
 * Axios
+* Google Authentication
 * Google API
 * AWS Lambda
 * PWA (Progressive Web Application)
