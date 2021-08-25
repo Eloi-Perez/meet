@@ -1,8 +1,24 @@
-# Meet App - [eloi-perez.github.io/meet/](https://eloi-perez.github.io/meet/)
+# Meet App
 
 
 ## Objective
 To build a serverless (with AWS Lambda), progressive web application (PWA) with React, using test-driven development (TDD) and Google Calendar API as the source of the app data.
+
+Hosted on [GitHub Pages](https://eloi-perez.github.io/meet "GitHub Pages")
+
+## Technologies used:
+* React
+* Axios
+* Google API
+* AWS Lambda
+* PWA (Progressive Web Application)
+* Recharts
+* NProgress.js
+* Jest
+* Enzyme
+* Jest Cucumber (Gherkin scenarios in Jest)
+* Puppeteer
+* Atatus
 
 ## Features:
 
