@@ -6,6 +6,8 @@ To build a serverless (with AWS Lambda), progressive web application (PWA) with 
 
 Hosted on [GitHub Pages](https://eloi-perez.github.io/meet "GitHub Pages")
 
+![web image](https://github.com/Eloi-Perez/meet/blob/assets/meet-app.png)
+
 ## Technologies used:
 * React
 * Axios
@@ -21,7 +23,12 @@ Hosted on [GitHub Pages](https://eloi-perez.github.io/meet "GitHub Pages")
 * Puppeteer
 * Atatus
 
+
+
+
 ## Features:
+
+![web image](https://github.com/Eloi-Perez/meet/blob/assets/all_test_pass.png)
 
 ### Filter events by city
 
