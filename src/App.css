@@ -62,7 +62,7 @@ input[type="text"], input[type="number"] {
 .suggestions>li {
     text-align: left;
     padding: 8px 6px 8px 10px;
-    background-color: #eee;
+    background-color: #fcfcfc;
     cursor: default;
 }
 
@@ -88,6 +88,7 @@ input[type="text"], input[type="number"] {
     border-radius: 4px;
     position: relative;
     text-align: center;
+    background-color: #fcfcfc;
 }
 
 .details-btn {
@@ -164,7 +165,7 @@ input[type="text"], input[type="number"] {
 }
 
 .recharts-surface {
-  overflow: visible;
+    overflow: visible;
 }
 
 /* .login-button {
