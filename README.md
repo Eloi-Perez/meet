@@ -10,6 +10,7 @@ Hosted on [GitHub Pages](https://eloi-perez.github.io/meet "GitHub Pages")
 * React
 * Axios
 * Google API
+* Google Authentication
 * AWS Lambda
 * PWA (Progressive Web Application)
 * Recharts
