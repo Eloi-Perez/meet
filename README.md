@@ -48,10 +48,10 @@ Hosted on [GitHub Pages](https://eloi-perez.github.io/meet "GitHub Pages")
         </ul>
         <p>Scenario: User can select a city from the suggested list</p>
         <ul>
-            <li>Given user was typing “Berlin” in the city textbox And the list of suggested cities
+            <li>Given user was typing “Berlin” in the city textbox<br>And the list of suggested cities
                 is showing</li>
             <li>When the user selects a city (e.g., “Berlin, Germany”) from the list</li>
-            <li>Then their city should be changed to that city (i.e., “Berlin, Germany”) And the
+            <li>Then their city should be changed to that city (i.e., “Berlin, Germany”)<br>And the
                 user should receive a list of upcoming events in that city</li>
         </ul>
     </li>
@@ -67,7 +67,7 @@ Hosted on [GitHub Pages](https://eloi-perez.github.io/meet "GitHub Pages")
         <ul>
             <li>Given the main page is open</li>
             <li>When the user clicks on the button and edits it to another number </li>
-            <li>Then it should be shown in the list the number of events specified by the button</li>
+            <li>Then the number of events specified by the button should be shown</li>
         </ul>
     </li>
     <li>
@@ -80,13 +80,13 @@ Hosted on [GitHub Pages](https://eloi-perez.github.io/meet "GitHub Pages")
         </ul>
         <p>Scenario: User can expand an event to show its details</p>
         <ul>
-            <li>Given an collapsed element</li>
+            <li>Given a collapsed element</li>
             <li>When the user clicks on the collapsed element</li>
             <li>Then the element should expand</li>
         </ul>
         <p>Scenario: User can collapse an event to hide its details</p>
         <ul>
-            <li>Given a expanded element</li>
+            <li>Given an expanded element</li>
             <li>When the user clicks on the expanded element</li>
             <li>Then the element should collapse</li>
         </ul>
