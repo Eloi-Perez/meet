@@ -21,7 +21,7 @@ defineFeature(feature, test => {
             // AppWrapper.setState({ showWelcomeScreen: false });
         });
 
-        then('the user should see the list of upcoming events.', () => {
+        then('the user should see the list of upcoming events', () => {
             AppWrapper.update();
             expect(AppWrapper.find('.event-container')).toHaveLength(32 || mockData.length);
             // expect(AppWrapper.find('.event-container').hostNodes()).toHaveLength(mockData.length);
