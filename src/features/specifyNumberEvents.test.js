@@ -42,7 +42,7 @@ defineFeature(feature, test => {
             });
         });
 
-        then('it should be shown the quantity of events specified in button', () => {
+        then('the number of events specified by the button should be shown', () => {
             expect(AppWrapper.find(Event)).toHaveLength(5);
         });
     });
